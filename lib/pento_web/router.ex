@@ -23,7 +23,14 @@ defmodule PentoWeb.Router do
     get "/page", PageController, :index
 
     live "/", PageLive, :index
-    live "/guess", WrongLive
+    #Generated product routes start here:application
+
+    live "/products", ProductLive.Index, :index
+    live "/products/new", ProductLive.Index, :new
+    live "/products/:id/edit", ProductLive.Index, :edit
+    
+    live "/products/:id", ProductLive.Show, :show
+    live "/products/:id/show/edit", ProductLive.Show, :edit
 
   end
 
@@ -79,6 +86,7 @@ defmodule PentoWeb.Router do
   scope "/", PentoWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    live "/guess", WrongLive
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
