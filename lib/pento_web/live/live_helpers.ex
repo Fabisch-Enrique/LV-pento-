@@ -50,6 +50,7 @@ defmodule PentoWeb.LiveHelpers do
       </div>
     </div>
     """
+
   end
 
   defp hide_modal(js \\ %JS{}) do
