@@ -1,3 +1,5 @@
+
+
 <div>
   <h2><%= @title %></h2>
 
@@ -24,6 +26,8 @@
     <%= label f, :sku %>
     <%= number_input f, :sku %>
     <%= error_tag f, :sku %>
+    <%= hidden_input f, :image_upload %> <%= label f, :image %>
+    <%= live_file_input @uploads.image %>
   
     <div>
       <%= submit "Save", phx_disable_with: "Saving..." %>
