@@ -34,6 +34,7 @@ defmodule PentoWeb.ProductLive.FormComponent do
   end
 
   defp handle_progress(:image, entry, socket) do
+    :timer.sleep(1000)
     if entry.done? do
       path =
         consume_uploaded_entry(
@@ -51,16 +52,16 @@ defmodule PentoWeb.ProductLive.FormComponent do
     end
   end
 
+  def update_changeset(%{assigns: %{changeset: changeset}} = socket, key, value) do
+    socket
+    |> assign(changeset, Ecto.Changeset.put_changeset(changeset, key, value))
+  end
+
   defp upload_static_file(%{path: path}, socket) do
     # plug in your production image file persistence implementation here!!
     dest = Path.join("priv/static/images", Path.basename(path))
     File.cp!(path, dest)
     Routes.static_path(socket, "/images/#{Path.basename(dest)}")
-  end
-
-  def update_changeset(%{assigns: %{changeset: changeset}} = socket, key, value) do
-    socket
-    |> assign(changeset, Ecto.Changeset.put_changeset(changeset, key, value))
   end
 
   defp save_product(socket, :edit, product_params) do
