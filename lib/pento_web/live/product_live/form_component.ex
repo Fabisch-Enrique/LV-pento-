@@ -54,7 +54,7 @@ defmodule PentoWeb.ProductLive.FormComponent do
 
   def update_changeset(%{assigns: %{changeset: changeset}} = socket, key, value) do
     socket
-    |> assign(changeset, Ecto.Changeset.put_changeset(changeset, key, value))
+    |> assign(:changeset, Ecto.Changeset.put_change(changeset, key, value))
   end
 
   defp upload_static_file(%{path: path}, socket) do
